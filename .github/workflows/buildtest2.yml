@@ -37,4 +37,4 @@ snyk_scanning:
     - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/maven@master
       env:
-        SNYK_TOKEN: ${{ fdc2beac-85e4-48eb-9caa-f39287791d41 }}
+        SNYK_TOKEN: fdc2beac-85e4-48eb-9caa-f39287791d41
