@@ -10,29 +10,31 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build and test with Maven
-      run: mvn -B test
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "temurin"
+          cache: maven
+      - name: Build and test with Maven
+        run: mvn -B test
 
+snyk_scanning:
+  needs: buildtest2
+  runs-on: ubuntu-latest
+  steps:
     - uses: actions/checkout@master
     - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/maven@master
       env:
         SNYK_TOKEN: ${{ fdc2beac-85e4-48eb-9caa-f39287791d41 }}
-      
